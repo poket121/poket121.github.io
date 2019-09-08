@@ -22,3 +22,4 @@ paginate: 6
 
 # Plugins Settings
 plugins: ["jekyll-paginate"]
+theme: jekyll-theme-cayman
