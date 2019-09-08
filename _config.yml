@@ -1,0 +1,24 @@
+# Site settings
+title: Daily Development Notes
+name: KimJunHee # your name
+email: wnsgml972@gmail.com # your email address
+description: Software Programmer
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://wnsgml972.github.io/" # the base hostname & protocol for your site
+twitter_username: KimJunHee # your Twitter username
+github_username: wnsgml972 # your Github username
+disqus_username: wnsgml972-1 # your disqus username
+
+google-analytics: UA-113140483-1 # add it if you have one
+
+skillstree: false # turn on or off the skills tree in about page
+
+# Build settings
+permalink: none
+markdown: kramdown
+
+# Amount of post to show on home page
+paginate: 6
+
+# Plugins Settings
+plugins: ["jekyll-paginate"]

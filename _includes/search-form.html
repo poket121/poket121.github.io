@@ -1,0 +1,128 @@
+<!-- Shape Style
+---------------------------------------------------->
+<style>
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+.search-container {
+    position: fixed;
+    bottom: 12%;
+    left: 95.2%;
+    transform: translate(-100%, 0%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+.search-container input{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px; 
+    background: rgb(237, 245, 255);
+}
+
+.search-container .fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+.search-container:focus{
+    cursor: text;
+}
+
+.search-container:hover{
+    width: 200px;
+    cursor: pointer;
+}
+
+.search-container:hover input{
+    display: block;
+}
+
+.search-container:hover .fa{
+    background: #07051aa8;
+    color: white;
+}
+</style> 
+
+
+
+<!-- React Style
+---------------------------------------------------->
+<style>
+@media all and (max-width:1300px){
+  .search-container {
+		display: none !important;
+		visibility: hidden !important;
+	}
+}
+
+@media all and (max-height:500px){
+  .search-container {
+		display: none !important;
+		visibility: hidden !important;
+	}
+}
+
+/* Desktop Device */
+@media all and (min-width:1025px) {
+
+}
+</style>
+
+
+<!-- HTML
+---------------------------------------------------->
+<form class="search-container" action="/search.html" method="get" id="custom-search-form" autocomplete= "off">
+  <input type="search" class="searchTerm" id="search-box" name="query" placeholder="Search...">
+  <input type="submit" class="searchButton" value="search" style="display: none;">
+  <i class="fa fa-search" onclick="document.getElementById('custom-search-form').submit();"></i>
+</form>
+
+<!-- Search JS
+---------------------------------------------------->
+<script>
+  window.store = {
+    {% for post in site.posts %}
+      "{{ post.url | slugify }}": {
+        "title": "{{ post.title | xml_escape }}",
+        "author": "{{ post.author | xml_escape }}",
+        "category": "{{ post.category | xml_escape }}",
+        "content": {{ post.content | strip_html | strip_newlines | jsonify }},
+        "url": "{{ post.url | xml_escape }}"
+      }
+      {% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+</script>
+
+<script src="/js/lunr.min.js"></script>
+<script src="/js/search.js"></script>
